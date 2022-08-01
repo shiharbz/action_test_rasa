@@ -11,10 +11,12 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - my_name:
+      use_entities: []
 
 entities:
   - place
-  - name
+  - PERSON
 
 slots:
   location:
@@ -28,12 +30,16 @@ slots:
     influence_conversation: False
     mappings:
       - type: custom
-  name:
-    type: text
-    influence_conversation: true
+
+  PERSON:
+    type: any
+    influence_conversation: False
     mappings:
-      - type: from_entity
-        entity: name
+    - entity: PERSON
+      type: from_entity
+    - type: from_entity
+      entity: PERSON
+      
 
 responses:
   utter_greet:
@@ -41,9 +47,9 @@ responses:
       - type: slot
         name: logged_in
         value: true
-    text: "Hey, {name}. Nice to see you again! How are you?"
+    text: "Hey, {PERSON}. Nice to see you again! How are you?"
 
-  - text: "Hey , How are you? {name}"
+  - text: "Hey , How are you? {PERSON}"
 
   # utter_cheer_up:
   # - text: "Here is something to cheer you up:"
@@ -69,6 +75,9 @@ actions:
   - action_cheer_up
   - action_set_name
 
+config:
+  store_entities_as_slots: true
+  
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
@@ -76,4 +85,4 @@ session_config:
 forms:
   name_form:
     required_slots:
-      - name
+    - PERSON

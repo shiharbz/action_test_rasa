@@ -36,5 +36,6 @@ rules:
 - rule: Activate form
   steps:
   - intent: my_name
+  # - action: action_set_name
   - action: name_form
   - active_loop: name_form

@@ -108,7 +108,7 @@ class ActionSetName(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        name = next(tracker.get_latest_entity_values("name"), None)
+        name = next(tracker.get_latest_entity_values("PERSON"), None)
         print(name)
 
-        return [SlotSet("logged_in", True), SlotSet("name", name)]
+        return [SlotSet("logged_in", True), SlotSet("PERSON", name)]

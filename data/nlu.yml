@@ -126,7 +126,11 @@ nlu:
 
 - intent: my_name
   examples: |
-    - i am [shihar](name)
-    - my name is [asif](name)
-    - i'm [raam](name)
-    - [joy](name) is my name
+    - i am [shihar](PERSON)
+    - my name is [asif](PERSON)
+    - i'm [raam](PERSON)
+    - [joy](PERSON) is my name
+    - i am [robin](PERSON)
+    - my name is [robin](PERSON)
+    - i'm [kiran k](PERSON)
+    - [jose](PERSON) is my name
