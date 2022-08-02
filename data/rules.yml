@@ -12,40 +12,7 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: Tell the time
+- rule: action gpt
   steps:
-  - intent: inquire_time
-  - action: action_tell_time
-
-- rule: Where I live intent
-  steps:
-  - intent: where_i_live
-  - action: action_remember_where
-
-- rule: Time Difference Intent
-  steps:
-  - intent: inquire_time_difference
-  - action: action_time_difference
-  
-# - rule: my_name
-#   steps:
-#   - intent: my_name
-#   - action: action_set_name
-#   - action: utter_greet
-
-- rule: Activate form
-  steps:
-  - intent: my_name
-  - action: name_form
-  - active_loop: name_form
-
-- rule: Submit form
-  condition:
-  - active_loop: name_form  
-  steps:
-  - action: name_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: action_set_name
-  - action: utter_greet
+  - intent: gpt_qa
+  - action: action_gpt

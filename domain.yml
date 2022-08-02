@@ -1,9 +1,6 @@
 version: "3.1"
 
 intents:
-  - where_i_live
-  - inquire_time_difference
-  - inquire_time
   - greet
   - goodbye
   - affirm
@@ -11,55 +8,22 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - my_name:
-      use_entities: []
+  - gpt_qa
 
-entities:
-  - place
-  - PERSON
-
-slots:
-  location:
-    type: text
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: place
-  logged_in:
-    type: bool
-    influence_conversation: False
-    mappings:
-      - type: custom
-
-  PERSON:
-    type: any
-    influence_conversation: False
-    mappings:
-    - entity: PERSON
-      type: from_entity
-    - type: from_entity
-      entity: PERSON
-      
 
 responses:
   utter_greet:
-  - condition:
-      - type: slot
-        name: logged_in
-        value: true
-    text: "Hey, {PERSON}. Nice to see you again! How are you?"
+  - text: "Hey , How are you?"
 
-  - text: "Hey , How are you? {PERSON}"
-
-  # utter_cheer_up:
-  # - text: "Here is something to cheer you up:"
-  #   image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
   - text: "Did that help you? "
 
   utter_happy:
-  - text: "Great, carry on! your in {location}"
+  - text: "Great, carry on! your in"
 
   utter_goodbye:
   - text: "Bye"
@@ -68,12 +32,7 @@ responses:
   - text: "I am a bot, powered by Rasa."
 
 actions:
-  - action_remember_where
-  - action_tell_time
-  - action_time_difference
-  - utter_greet
-  - action_cheer_up
-  - action_set_name
+  - action_gpt
 
 config:
   store_entities_as_slots: true
@@ -81,8 +40,3 @@ config:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-forms:
-  name_form:
-    required_slots:
-    - PERSON
